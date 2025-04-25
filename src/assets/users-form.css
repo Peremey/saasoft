@@ -1,0 +1,39 @@
+.users {
+    padding:10px;
+}
+.users--header {
+    color:Gray;
+}
+.users--list {
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr 1fr max-content;
+    row-gap: 5px;
+    column-gap: 15px;
+}
+.users--item input, .users--item select, .users--item textarea{
+    width:100%;
+    box-sizing: border-box;
+}
+
+.users--item-ldap {
+    grid-column: span 2;
+}
+.users--note {
+    padding:10px;
+    border-radius:5px;
+    background-color: rgba(203, 238, 240, 0.789);
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap:20px;
+}
+
+.error {
+    border: solid 1px Red;
+}
+
+.add--wrapper {
+    display:flex;
+    align-items: center;
+    gap:10px;
+}

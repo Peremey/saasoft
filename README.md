@@ -1,33 +1,44 @@
 # saasoft
 
-This template should help get you started developing with Vue 3 in Vite.
+Необходимо реализовать форму управления учетными записями.
 
-## Recommended IDE Setup
+Время на выполнение задания, максимум 2 дня.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Результатом выполнения работы, является ссылка на github/gitlab репозиторий с историей коммитов.
 
-## Type Support for `.vue` Imports in TS
+Макет представлен для примера, главное соблюдать тз, структуру и расположение полей, визуальное отображение можно сделать по своему предпочтению.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXehWQV1hMr4-aYWDT0iN7WAYTyAVO4azO2WGkqnD6eZPYWwAqXuOYufJ2t0w4MFK8n_mx60J8fDKcBCx1MfDps1JyUSne2OOuh4daF-47aMJKwU_skyLZ8Az5_3itIIboDQ9GFL8Q?key=FrzfW-oaPU8IyecO3AagdPSQ)
 
-## Customize configuration
+Стек:
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+1. Vue.js 3 + Composition API (фреймворк)
+2. TypeScript (язык)
+3. Pinia (стейт менеджер)
+4. Любой UI фреймворк на выбор.
 
-## Project Setup
+Форма состоит из:
 
-```sh
-npm install
-```
+1. Заголовка и кнопки добавления учетной записи.
+2. Подсказки для поля метка.
+3. Списка учетных записей с лейблами полей.
 
-### Compile and Hot-Reload for Development
+Учетная запись состоит из:
 
-```sh
-npm run dev
-```
+1. Метка - Необязательное поле к заполнению. Максимум 50 символов. В поле вводятся текстовые метки, через знак ;
+2. Тип записи - Выпадающий список. Допускаются выборы из заранее предопределенных вариантов:
 
-### Type-Check, Compile and Minify for Production
+* LDAP - При выборе этого типа - поле "Пароль" скрывается и сохраняется как null
+* Локальная - При выборе этого типа - поле "Пароль" показывается и сохраняется как введенное значение
 
-```sh
-npm run build
-```
+3. Логин - Обязательное к заполнению. Максимум 100 символов
+4. Пароль - Обязательное к заполнению. Отображается в случае выбора значения "Локальная" в поле "Тип записи". Максимум 100 символов
+5. Кнопки удаления учетной записи.
+
+Логика работы формы:
+
+1. По нажатию кнопки "+" в конец списка учетных записей, добавляется новая пустая запись, состоящая из: Метки, Типа записи, Логина, Пароля.
+2. При нажатии кнопки удаления, учетная запись должна полностью удалиться.
+3. По окончанию ввода значений в поля учетной записи (для текстовых - потеря фокуса, для селекта - изменение значения), происходит валидация обязательных полей. В случае валидности - учетная запись сохраняется/обновляется, в обратном, поля обозначаются красной обводкой.
+4. Все поля сохраняются в текстовом виде, кроме поле Метка. Оно должно преобразовываться в массив, где один элемент это строковое значение до ;. В массиве должен лежать объект, где поле text равно одному элементу метки - ({ text: элемент метки })
+5. Сохранение учетной записи должно происходить в стейт менеджер. При обновлении страницы, сохраненные учетные записи должны отображаться.
