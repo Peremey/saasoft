@@ -20,9 +20,8 @@
             <div class="users--header"></div>
             <template v-for="(user, index) in users" :key="index">
                 <div class="users--item">
-                    <n-input placeholder="" size="small" type="textarea" :autosize="{ minRows: 1 }"
-                        v-model:value="user.mark" :class="{ 'error': errors.has('mark' + index) }"
-                        @blur="updateMark($event, index)" />
+                    <n-input placeholder="" type="textarea" :autosize="{ minRows: 1 }" v-model:value="user.mark"
+                        :class="{ 'error': errors.has('mark' + index) }" @blur="updateMark($event, index)" />
                 </div>
                 <div class="users--item">
                     <n-select v-model:value="user.type" @update:value="updateType($event, index)"
